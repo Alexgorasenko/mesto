@@ -7,7 +7,7 @@
   background-size: contain;
   border: none;
   cursor: pointer;
-  margin-top: 48px ;
+  margin-top: 48px;
   align-self: center;
   transition: opacity 0.5s linear 0.1s;
 }
@@ -15,7 +15,6 @@
 .popup__save:hover {
   opacity: 0.8;
 }
-
 
 @media screen and (max-width: 400px) {
   .popup__save {
