@@ -27,4 +27,4 @@
 
 
 
-* [Ссылка на выполненный проект]https://alexgorasenko.github.io/mesto/
+* [Ссылка на выполненный проект]https://alexgorasenko.github.io/mesto/index.html
