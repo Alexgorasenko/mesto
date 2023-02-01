@@ -1,0 +1,17 @@
+.profile__vocation {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 1.22;
+  color: #ffffff;
+  margin: 0;
+}
+
+@media screen and (max-width: 400px) {
+  .profile__vocation {
+    font-size: 14px;
+    margin-top: 8px;
+    text-align: center;
+  }
+}

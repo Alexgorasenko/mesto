@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Место</title>
+    <link rel="stylesheet" href="./pages/index.css">
+  </head>
+  <body>
+    <div class="page">
+      <header class="header">
+        <img
+          src="./images/header__logo.png"
+          alt="Mesto Russia"
+          class="header__logo">
+      </header>
+      <main class="content">
+        <section class="profile">
+          <div class="profile__information">
+            <img
+              src="./images/Kusto.png"
+              alt="Жак-Ив Кусто"
+              class="profile__avatar">
+            <div class="profile__description">
+              <div class="profile__editing">
+                <h1 class="profile__name">Жак-Ив Кусто</h1>
+                <button class="profile__button profile__button_type_edit"></button>
+              </div>
+              <p class="profile__vocation">Исследователь океана</p>
+            </div>
+          </div>
+          <button class="profile__add"></button>
+        </section>
+        <section class="places">
+          <article class="place-card">
+            <img
+              src="./images/place- Moon.png"
+              alt="Луна"
+              class="place-card__image">
+            <div class="place-card__description">
+              <h1 class="place-card__title">Луна</h1>
+              <button class="place-card__like"></button>
+            </div>
+          </article>
+          <article class="place-card">
+            <img
+              src="./images/place-baltic-sea.png"
+              alt="Балтийское море"
+              class="place-card__image">
+            <div class="place-card__description">
+              <h1 class="place-card__title">Балтийское море</h1>
+              <button class="place-card__like"></button>
+            </div>
+          </article>
+          <article class="place-card">
+            <img
+              src="./images/place-desert.png"
+              alt="Пустыня Сахара"
+              class="place-card__image">
+            <div class="place-card__description">
+              <h1 class="place-card__title">Пустыня Сахара</h1>
+              <button class="place-card__like"></button>
+            </div>
+          </article>
+          <article class="place-card">
+            <img
+              src="./images/place-Japan.png"
+              alt="Япония"
+              class="place-card__image">
+            <div class="place-card__description">
+              <h1 class="place-card__title">Япония</h1>
+              <button class="place-card__like"></button>
+            </div>
+          </article>
+          <article class="place-card">
+            <img
+              src="./images/place-mountains.png"
+              alt="Гималаи"
+              class="place-card__image">
+            <div class="place-card__description">
+              <h1 class="place-card__title">Гималаи</h1>
+              <button class="place-card__like"></button>
+            </div>
+          </article>
+          <article class="place-card">
+            <img
+              src="./images/place-sea-karib.png"
+              alt="Карибское море"
+              class="place-card__image">
+            <div class="place-card__description">
+              <h1 class="place-card__title">Карибское море</h1>
+              <button class="place-card__like"></button>
+            </div>
+          </article>
+        </section>
+      </main>
+      <footer class="footer">
+        <p class="footer__copyright">&copy; 2022. Александр Горащенко</p>
+      </footer>
+    </div>
+    <section class="popup">
+      <div class="popup__container">
+        <button class="popup__close"></button>
+        <h1 class="popup__header">Редактировать профиль</h1>
+        <form
+          name="personal"
+          method="post"
+          class="popup__eddit-form"
+          action="/">
+          <input
+            type="text"
+            class="popup__form popup__form_type_name"
+            name="name">
+          <input
+            type="text"
+            class="popup__form popup__form_type_vocation"
+            name="vocation">
+          <button class="popup__save"></button>
+        </form>
+      </div>
+    </section>
+    <script src="./scripts/script.js"></script>
+  </body>
+</html>
