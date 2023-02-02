@@ -9,19 +9,20 @@ let profileVocation = document.querySelector('.profile__vocation');
 let formElement= document.querySelector('.popup__eddit-form');
 
 function handleAboutButtonClick (){
-  popup.classList.add('popup__opened');
+  popup.classList.add('popup_opened');
   nameForm.value = profileName.textContent;
   vocationForm.value = profileVocation.textContent;
 }
 
 function handleCloseButtonClick (){
-  popup.classList.remove('popup__opened');
+  popup.classList.remove('popup_opened');
 }
 
 aboutButton.addEventListener('click', handleAboutButtonClick);
 closeBotton.addEventListener('click', handleCloseButtonClick)
 
-function addInfo() {
+function addInfo(evt) {
+  evt.preventDefault();
   profileName.textContent = nameForm.value;
   profileVocation.textContent = vocationForm.value ;
 }

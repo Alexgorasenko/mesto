@@ -1,5 +1,5 @@
 .popup__save{
-  background-image: url(../../../images/popup_save.png);
+  background-image: url(../../../images/popup_save.svg);
   width: 358px;
   height: 50px;
   background-color: transparent;
@@ -16,7 +16,7 @@
   opacity: 0.8;
 }
 
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 500px) {
   .popup__save {
     width: 238px;
     height: 46px;

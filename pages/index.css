@@ -8,7 +8,7 @@
 @import url(../blocks/profile/__add/profile__add.css);
 @import url(../blocks/profile/__avatar/profile__avatar.css);
 @import url(../blocks/profile/__button/profile__button.css);
-@import url(../blocks/profile/__button/_type_edit/profile__button_type_edit.css);
+@import url(../blocks/profile/__button/_type/_edit/profile__button_type_edit.css);
 @import url(../blocks/profile/__description/profile__description.css);
 @import url(../blocks/profile/__name/profile__name.css);
 @import url(../blocks/places/places.css);
@@ -16,7 +16,7 @@
 @import url(../blocks/place-card/__description/place-card__description.css);
 @import url(../blocks/place-card/__image/place-card__image.css);
 @import url(../blocks/place-card/__like/place-card__like.css);
-@import url(../blocks/place-card/__like/place-card__like_active/place-card__like_active.css);
+@import url(../blocks/place-card/__like/_active/place-card__like_active.css);
 @import url(../blocks/place-card/__title/place-card__title.css);
 @import url(../blocks/footer/footer.css);
 @import url(../blocks/footer/__copyright/footer__copyright.css);
@@ -30,6 +30,6 @@
 @import url(../blocks/popup/__form/_type_name/popup__form_type_name.css);
 @import url(../blocks/popup/__form/_type_vocation/popup__form_type_vocation.css);
 @import url(../blocks/popup/__header/popup__header.css);
-@import url(../blocks/popup/__opened/popup__opened.css);
+@import url(../blocks/popup/_opened/popup_opened.css);
 @import url(../blocks/popup/__save/popup__save.css);
 @import url(../blocks/popup/__eddit-form/popup__eddit-form.css);

@@ -1,11 +1,13 @@
 .popup__eddit-form{
   padding-left: 36px;
   padding-right: 36px;
+  padding-top: 54px;
 }
 
 @media screen and (max-width: 400px) {
   .popup__eddit-form {
     padding-left: 22px;
     padding-right: 22px;
+    padding-top: 75px;
   }
 }
