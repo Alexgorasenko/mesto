@@ -6,6 +6,8 @@
   .profile__editing {
     margin-top: 26px;
     align-items: center;
-    margin-left: 47px;
+    margin-left: 13px;
+    width: 100%;
+    justify-content: center;
   }
 }
