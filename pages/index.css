@@ -31,3 +31,7 @@
 @import url(../blocks/popup/_opened/popup_opened.css);
 @import url(../blocks/popup/__save/popup__save.css);
 @import url(../blocks/popup/__eddit-form/popup__eddit-form.css);
+@import url(../blocks/place-card/__delete/place-card__delete.css);
+@import url(../blocks/place-card/__picture/place-card__picture.css);
+
+

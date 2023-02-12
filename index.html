@@ -29,75 +29,17 @@
               <p class="profile__vocation">Исследователь океана</p>
             </div>
           </div>
-          <button aria-label="Добавление пользователя" type="button" class="profile__add"></button>
+          <button aria-label="Добавление места" type="button" class="profile__add"></button>
         </section>
         <section aria-label="Карточки с местами" class="places">
-          <article class="place-card">
-            <img
-              src="./images/place-Moon.png"
-              alt="Луна"
-              class="place-card__image">
-            <div class="place-card__description">
-              <h2 class="place-card__title">Луна</h2>
-              <button aria-label="Кнопка понравилось" type="button" class="place-card__like"></button>
-            </div>
-          </article>
-          <article class="place-card">
-            <img
-              src="./images/place-baltic-sea.png"
-              alt="Балтийское море"
-              class="place-card__image">
-            <div class="place-card__description">
-              <h2 class="place-card__title">Балтийское море</h2>
-              <button aria-label="Кнопка понравилось" type="button" class="place-card__like"></button>
-            </div>
-          </article>
-          <article class="place-card">
-            <img
-              src="./images/place-desert.png"
-              alt="Пустыня Сахара"
-              class="place-card__image">
-            <div class="place-card__description">
-              <h2 class="place-card__title">Пустыня Сахара</h2>
-              <button aria-label="Кнопка понравилось" type="button" class="place-card__like"></button>
-            </div>
-          </article>
-          <article class="place-card">
-            <img
-              src="./images/place-Japan.png"
-              alt="Япония"
-              class="place-card__image">
-            <div class="place-card__description">
-              <h2 class="place-card__title">Япония</h2>
-              <button aria-label="Кнопка понравилось" type="button" class="place-card__like"></button>
-            </div>
-          </article>
-          <article class="place-card">
-            <img
-              src="./images/place-mountains.png"
-              alt="Гималаи"
-              class="place-card__image">
-            <div class="place-card__description">
-              <h2 class="place-card__title">Гималаи</h2>
-              <button aria-label="Кнопка понравилось" type="button" class="place-card__like"></button>
-            </div>
-          </article>
-          <article class="place-card">
-            <img
-              src="./images/place-sea-karib.png"
-              alt="Карибское море"
-              class="place-card__image">
-            <div class="place-card__description">
-              <h2 class="place-card__title">Карибское море</h2>
-              <button aria-label="Кнопка понравилось" type="button" class="place-card__like"></button>
-            </div>
-          </article>
+
         </section>
       </main>
       <footer class="footer">
         <p class="footer__copyright">&copy; 2022. Александр Горащенко</p>
       </footer>
     </div>
+    <template id="popup-add">
     <div class="popup">
       <div class="popup__container">
         <button aria-label="Закрытие попапа" type="button" class="popup__close"></button>
@@ -111,16 +53,41 @@
             type="text"
             class="popup__form popup__form_type_name"
             name="name"
-            placeholder="Введите имя">
+            placeholder="">
           <input
             type="text"
             class="popup__form popup__form_type_vocation"
             name="vocation"
-            placeholder="Введите описание">
+            placeholder="">
           <button type="submit" class="popup__save">Сохранить</button>
         </form>
       </div>
     </div>
-    <script src="./scripts/index.js"></script>
+  </template>
+    <template id ='item'>
+    <article class="place-card">
+      <div class="place-card__picture">
+      <img
+        src="./images/place-baltic-sea.png"
+        alt="Места"
+        class="place-card__image">
+        <button aria-label="Кнопка удалить" type="button" class="place-card__delete"></button>
+      </div>
+      <div class="place-card__description">
+        <h2 class="place-card__title">Япония</h2>
+        <button aria-label="Кнопка понравилось" type="button" class="place-card__like"></button>
+      </div>
+      </article>
+    </template>
+    <template id = 'places-popap'>
+    <div class="popap place-popap">
+      <img
+      src="./images/place-baltic-sea.png"
+      alt="Места"
+      class="place-popap__image">
+    <h3 class="place-popap__title">Япония</h3>
+   </div>
+  </template>
+  <script src="./scripts/index.js"></script>
   </body>
 </html>
