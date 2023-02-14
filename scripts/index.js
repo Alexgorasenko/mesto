@@ -30,27 +30,27 @@ formEditingElement.addEventListener('submit', addInfo);
 const initialCards = [
   {
     name: 'Луна',
-    link: '../images/place-Moon.png'
+    link: 'https://www.mainmain.id/uploads/post/2021/01/31/Fase_Bulan_Pengaruhi_Tidur_Manusia_mainmain.id_.jpg'
   },
   {
     name: 'Балтийское море',
-    link: '../images/place-baltic-sea.png'
+    link: 'https://gamerwall.pro/uploads/posts/2022-06/thumbs/1655671870_7-gamerwall-pro-p-volni-na-reke-priroda-krasivo-foto-10.jpg'
   },
   {
     name: 'Пустыня Сахара',
-    link: '../images/place-desert.png'
+    link: 'https://www.biletik.aero/upload/medialibrary/be5/be5ec1c4b6131ec3784cd00f50b148d3.jpg'
   },
   {
     name: 'Япония',
-    link: '../images/place-Japan.png'
+    link: 'https://i.pinimg.com/736x/76/8b/93/768b93d33b176d6d17b51c9b427ece07.jpg'
   },
   {
     name: 'Гималаи',
-    link: '../images/place-mountains.png'
+    link: 'https://vsegda-pomnim.com/uploads/posts/2022-04/1650925320_25-vsegda-pomnim-com-p-gori-gimalai-foto-25.jpg'
   },
   {
     name: 'Карибское море',
-    link: '../images/place-sea-karib.png'
+    link: 'https://priroda.club/uploads/posts/2021-12/thumbs/1639796585_73-priroda-club-p-karibskie-ostrova-priroda-krasivo-foto-78.jpg'
   },
 ]
 
