@@ -39,31 +39,32 @@
         <p class="footer__copyright">&copy; 2022. Александр Горащенко</p>
       </footer>
     </div>
-    <template id="popup-add">
-    <div class="popup">
+    <div class="popup popup-editing">
       <div class="popup__container">
-        <button aria-label="Закрытие попапа" type="button" class="popup__close"></button>
+        <button aria-label="Закрытие попапа" type="button" class="popup__close popup-editing__close"></button>
         <h3 class="popup__header">Редактировать профиль</h3>
-        <form
-          name="personal"
-          method="post"
-          class="popup__eddit-form"
-          action="/">
-          <input
-            type="text"
-            class="popup__form popup__form_type_name"
-            name="name"
-            placeholder="">
-          <input
-            type="text"
-            class="popup__form popup__form_type_vocation"
-            name="vocation"
-            placeholder="">
-          <button type="submit" class="popup__save">Сохранить</button>
+        <form name="personal" method="post" class="popup__eddit-form popup-editing__eddit-form" action="/">
+          <input type="text"  class="popup__form popup__form_type_name" name="name"  placeholder="Введите имя">
+          <input type="text" class="popup__form popup__form_type_vocation" name="vocation"  placeholder="Введите описание">
+          <button type="submit" class="popup__save popup-editing__save">Сохранить</button>
         </form>
       </div>
     </div>
-  </template>
+
+    <div class="popup popup-add">
+      <div class="popup__container">
+        <button aria-label="Закрытие попапа" type="button" class="popup__close popup-add__close"></button>
+        <h3 class="popup__header">Новое место</h3>
+        <form name="personal" method="post" class="popup__eddit-form popup-add__eddit-form" action="/">
+          <input type="text"  class="popup__form popup__form_type_title" name="title"  placeholder="Название">
+          <input type="text" class="popup__form popup__form_type_link" name="link"  placeholder="Ссылка на картинку">
+          <button type="submit" class="popup__save popup-add__save">Cоздать</button>
+        </form>
+      </div>
+    </div>
+
+
+
     <template id ='item'>
     <article class="place-card">
       <div class="place-card__picture">
@@ -80,13 +81,12 @@
       </article>
     </template>
     <template id = 'places-popap'>
-    <div class="popap place-popap">
-      <img
-      src="./images/place-baltic-sea.png"
-      alt="Места"
-      class="place-popap__image">
-    <h3 class="place-popap__title">Япония</h3>
-   </div>
+      <div class="popup popup-img">
+        <div class="popup-img__container">
+          <button aria-label="Закрытие попапа" type="button" class="popup-img__close"></button>
+          <img src='./images/place-Japan.png' alt="Места" class="popup-img__image">
+          <h3 class="popup-img__header">Новое место</h3>
+        </div>
   </template>
   <script src="./scripts/index.js"></script>
   </body>
