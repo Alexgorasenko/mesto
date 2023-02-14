@@ -7,7 +7,7 @@
     margin-top: 26px;
     align-items: center;
     margin-left: 13px;
-    width: 100%;
+    max-width: 100%;
     justify-content: center;
   }
 }

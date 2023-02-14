@@ -56,7 +56,6 @@ const initialCards = [
 
 const places = document.querySelector('.places')
 const templatePlaceCard = document.querySelector('#item')
-const templatePlacePopup = document.querySelector('#places-popap')
 const popupAdd = document.querySelector(".popup-add")
 const closeAddBotton= popupAdd.querySelector(".popup-add__close")
 const saveAddButton = popupAdd.querySelector('.popup-add__save');
@@ -64,7 +63,10 @@ const titleForm = popupAdd.querySelector('.popup__form_type_title');
 const linkForm = popupAdd.querySelector('.popup__form_type_link');
 const formAddElement= popupAdd.querySelector('.popup-add__eddit-form');
 const addPlaceButton= document.querySelector('.profile__add')
-
+const popupImg = document.querySelector(".popup-img")
+const closePupupImgBotton= popupImg.querySelector(".popup-img__close")
+const popupImgTitle= popupImg.querySelector('.popup-img__header')
+const popupImgImage= popupImg.querySelector('.popup-img__image')
 
 const toggleOpenAddPopup = () =>{
   popupAdd.classList.toggle('popup_opened');
@@ -74,23 +76,12 @@ addPlaceButton.addEventListener('click', toggleOpenAddPopup);
 closeAddBotton.addEventListener('click', toggleOpenAddPopup);
 
 
+const toggleOpenImagePopup =() => {
+  popupImg.classList.toggle('popup_opened');
+};
 
-
-const getPopupImg = (link, name) => {
-  const toggleOpenImagePopup = (evt) =>{
-    evt.target.classList.toggle('popup_opened');
-  }
-  const newPopupImg= templatePlacePopup.content.cloneNode(true);
-  const newPopupImgTitle= newPopupImg.querySelector('.popup-img__header')
-  newPopupImgTitle.textContent= `${name}`;
-  const newPopupImgImage= newPopupImg.querySelector('.popup-img__image')
-  newPopupImgImage.src = `${link}`;
-  const closePupupImgBotton= newPopupImg.querySelector('.popup-img__close')
-  closePupupImgBotton.addEventListener('click',toggleOpenImagePopup)
-
-  return newPopupImg
-}
-
+console.log(toggleOpenImagePopup)
+closePupupImgBotton.addEventListener('click',toggleOpenImagePopup)
 
 const getItemElement = (link, name) => {
   const newItemElement= templatePlaceCard.content.cloneNode(true);
@@ -98,14 +89,18 @@ const getItemElement = (link, name) => {
   newItemTitle.textContent= `${name}`;
   const newItemImage= newItemElement.querySelector('.place-card__image')
   newItemImage.src = `${link}`;
-  const likeActive = newItemElement.querySelector('.place-card__like').addEventListener('click', function (event){
+  const likeActive = newItemElement.querySelector('.place-card__like')
+  likeActive.addEventListener('click', function (event){
   event.target.classList.toggle('place-card__like_active');});
   const deletButton = newItemElement.querySelector('.place-card__delete');
   deletButton.addEventListener('click', (evt)=>{ evt.target.closest('.place-card').remove();});
-  newItemImage.addEventListener('click',getPopupImg)
+  newItemImage.addEventListener('click',()=>{
+    toggleOpenImagePopup();
+    popupImgTitle.textContent=newItemTitle.textContent;
+    popupImgImage.src=newItemImage.src;
+  })
   return newItemElement
 }
-
 
 const renderItem = (link, name) => {
   places.prepend(getItemElement(link, name))
@@ -127,25 +122,3 @@ formAddElement.addEventListener('submit', (evt) => {
 })
 
 saveAddButton.addEventListener('click', toggleOpenAddPopup);
-
-
-
-
-
-
-
-
-
-
-
-/*const popupImg = document.querySelector(".popup-img")
-const closePupupImgBotton= popupImg.querySelector(".popup-img__close")
-const openPupupImageButton= document.querySelector('.header__logo')
-
-
-const toggleOpenImagePopup =
-  console.log('123')
-}
-
-console.log(toggleOpenImagePopup)
-closePupupImgBotton.addEventListener('click',toggleOpenImagePopup)*/
