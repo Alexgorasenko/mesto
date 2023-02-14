@@ -30,7 +30,7 @@ formEditingElement.addEventListener('submit', addInfo);
 const initialCards = [
   {
     name: 'Луна',
-    link: 'https://www.mainmain.id/uploads/post/2021/01/31/Fase_Bulan_Pengaruhi_Tidur_Manusia_mainmain.id_.jpg'
+    link: 'https://m3.netinfo.bg/media/images/46548/46548158/1024-768-luna.jpg'
   },
   {
     name: 'Балтийское море',
