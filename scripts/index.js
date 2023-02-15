@@ -1,33 +1,27 @@
 const aboutButton= document.querySelector(".profile__button_type_edit")
 const profileName = document.querySelector('.profile__name');
 const profileVocation = document.querySelector('.profile__vocation');
-const popupEditing = document.querySelector(".popup-editing")
-const closeEditingBotton= popupEditing.querySelector(".popup-editing__close")
-const saveEditingButton = document.querySelector('.popup-editing__save');
-const nameForm = document.querySelector('.popup__form_type_name');
-const vocationForm = document.querySelector('.popup__form_type_vocation');
-const formEditingElement= document.querySelector('.popup-editing__eddit-form');
+const popupEditProfile = document.querySelector(".popup-editing")
+const closePopupEditProfileBotton= popupEditProfile.querySelector(".popup-editing__close")
+const savePopupEditProfileButton = popupEditProfile.querySelector('.popup-editing__save');
+const popupEditProfileFormName = popupEditProfile.querySelector('.popup__form_type_name');
+const popupEditProfileFormVocation= popupEditProfile.querySelector('.popup__form_type_vocation');
+const popupFormEditElement= popupEditProfile.querySelector('.popup-editing__eddit-form');
+const places = document.querySelector('.places')
+const templatePlaceCard = document.querySelector('#item')
+const popupAdd = document.querySelector(".popup-add")
+const closePopupAddBotton= popupAdd.querySelector(".popup-add__close")
+const savePopupAddButton = popupAdd.querySelector('.popup-add__save');
+const popupAddFormTitle = popupAdd.querySelector('.popup__form_type_title');
+const popupAddFormLink= popupAdd.querySelector('.popup__form_type_link');
+const popupAddFormLinkElement= popupAdd.querySelector('.popup-add__eddit-form');
+const addPlaceButton= document.querySelector('.profile__add')
+const popupPlaceImg = document.querySelector(".popup-img")
+const closePupupImgBotton= popupPlaceImg.querySelector(".popup-img__close")
+const popupPlaceImgTitle= popupPlaceImg.querySelector('.popup-img__header')
+const popupPlaceImgImage= popupPlaceImg.querySelector('.popup-img__image')
 
-const toggleOpenEditingPopup = () =>{
-  popupEditing.classList.toggle('popup_opened');
-  nameForm.value = profileName.textContent;
-  vocationForm.value = profileVocation.textContent;
-}
-
-aboutButton.addEventListener('click', toggleOpenEditingPopup);
-closeEditingBotton.addEventListener('click', toggleOpenEditingPopup)
-
-function addInfo(evt) {
-  evt.preventDefault();
-  profileName.textContent = nameForm.value;
-  profileVocation.textContent = vocationForm.value ;
-}
-
-saveEditingButton.addEventListener('click', addInfo);
-saveEditingButton.addEventListener('click', toggleOpenEditingPopup);
-formEditingElement.addEventListener('submit', addInfo);
-
-const initialCards = [
+const placeCardItem = [
   {
     name: 'Луна',
     link: 'https://m3.netinfo.bg/media/images/46548/46548158/1024-768-luna.jpg'
@@ -54,73 +48,65 @@ const initialCards = [
   },
 ]
 
-const places = document.querySelector('.places')
-const templatePlaceCard = document.querySelector('#item')
-const popupAdd = document.querySelector(".popup-add")
-const closeAddBotton= popupAdd.querySelector(".popup-add__close")
-const saveAddButton = popupAdd.querySelector('.popup-add__save');
-const titleForm = popupAdd.querySelector('.popup__form_type_title');
-const linkForm = popupAdd.querySelector('.popup__form_type_link');
-const formAddElement= popupAdd.querySelector('.popup-add__eddit-form');
-const addPlaceButton= document.querySelector('.profile__add')
-const popupImg = document.querySelector(".popup-img")
-const closePupupImgBotton= popupImg.querySelector(".popup-img__close")
-const popupImgTitle= popupImg.querySelector('.popup-img__header')
-const popupImgImage= popupImg.querySelector('.popup-img__image')
 
-const toggleOpenAddPopup = () =>{
-  popupAdd.classList.toggle('popup_opened');
+const toggleOpenPopup = (popup)=>{
+  popup.classList.toggle('popup_opened');
 }
 
-addPlaceButton.addEventListener('click', toggleOpenAddPopup);
-closeAddBotton.addEventListener('click', toggleOpenAddPopup);
+const openEditPopup = () =>{
+  toggleOpenPopup(popupEditProfile);
+  popupEditProfileFormName.value = profileName.textContent;
+  popupEditProfileFormVocation.value = profileVocation.textContent;
+}
 
+const addInfo =(evt) => {
+  evt.preventDefault();
+  profileName.textContent = popupEditProfileFormName.value;
+  profileVocation.textContent = popupEditProfileFormVocation.value ;
+}
 
-const toggleOpenImagePopup =() => {
-  popupImg.classList.toggle('popup_opened');
-};
-
-console.log(toggleOpenImagePopup)
-closePupupImgBotton.addEventListener('click',toggleOpenImagePopup)
-
-const getItemElement = (link, name) => {
-  const newItemElement= templatePlaceCard.content.cloneNode(true);
-  const newItemTitle= newItemElement.querySelector('.place-card__title')
-  newItemTitle.textContent= `${name}`;
-  const newItemImage= newItemElement.querySelector('.place-card__image')
-  newItemImage.src = `${link}`;
-  newItemImage.alt = `${name}`;
-  const likeActive = newItemElement.querySelector('.place-card__like')
-  likeActive.addEventListener('click', function (event){
+const getNewPlaceCard = (link, name) => {
+  const newPlaceCard= templatePlaceCard.content.cloneNode(true);
+  const newPlaceCardTitle= newPlaceCard.querySelector('.place-card__title')
+  newPlaceCardTitle.textContent= `${name}`;
+  const newPlaceCardImage= newPlaceCard.querySelector('.place-card__image')
+  newPlaceCardImage.src = `${link}`;
+  newPlaceCardImage.alt = `${name}`;
+  const placeCardLikeActive = newPlaceCard.querySelector('.place-card__like')
+  placeCardLikeActive.addEventListener('click', (event)=>{
   event.target.classList.toggle('place-card__like_active');});
-  const deletButton = newItemElement.querySelector('.place-card__delete');
-  deletButton.addEventListener('click', (evt)=>{ evt.target.closest('.place-card').remove();});
-  newItemImage.addEventListener('click',()=>{
-    toggleOpenImagePopup();
-    popupImgTitle.textContent=newItemTitle.textContent;
-    popupImgImage.src=newItemImage.src;
-    popupImgImage.alt=newItemImage.alt;
+  const deletePlaceCardButton = newPlaceCard.querySelector('.place-card__delete');
+  deletePlaceCardButton.addEventListener('click', (evt)=>{ evt.target.closest('.place-card').remove();});
+  newPlaceCardImage.addEventListener('click',()=>{
+    toggleOpenPopup(popupPlaceImg);
+    popupPlaceImgTitle.textContent=newPlaceCardTitle.textContent;
+    popupPlaceImgImage.src=newPlaceCardImage.src;
+    popupPlaceImgImage.alt=newPlaceCardImage.alt;
   })
-  return newItemElement
+  return newPlaceCard
 }
 
 const renderItem = (link, name) => {
-  places.prepend(getItemElement(link, name))
+  places.prepend(getNewPlaceCard(link, name))
 }
 
-initialCards.forEach((item) => {
+placeCardItem.forEach((item) => {
   renderItem(item.link, item.name)
 })
 
-const clearInput = (name, link) =>{
-  name.value = '';
-  link.value ='';
-}
-
-formAddElement.addEventListener('submit', (evt) => {
+popupAddFormLinkElement.addEventListener('submit', (evt) => {
   evt.preventDefault();
-  renderItem(linkForm.value, titleForm.value);
-  clearInput (linkForm, titleForm);
+  renderItem(popupAddFormLink.value, popupAddFormTitle.value);
+  popupAddFormLinkElement.reset();
+
 })
 
-saveAddButton.addEventListener('click', toggleOpenAddPopup);
+aboutButton.addEventListener('click', openEditPopup);
+closePopupEditProfileBotton.addEventListener('click', openEditPopup)
+savePopupEditProfileButton.addEventListener('click', addInfo);
+savePopupEditProfileButton.addEventListener('click', openEditPopup);
+popupFormEditElement.addEventListener('submit', addInfo);
+addPlaceButton.addEventListener('click', ()=>{toggleOpenPopup(popupAdd)});
+closePopupAddBotton.addEventListener('click', ()=>{toggleOpenPopup(popupAdd)});
+savePopupAddButton.addEventListener('click', ()=>{toggleOpenPopup(popupAdd)});
+closePupupImgBotton.addEventListener('click',()=>{toggleOpenPopup(popupPlaceImg)})
