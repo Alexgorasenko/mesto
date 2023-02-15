@@ -89,6 +89,7 @@ const getItemElement = (link, name) => {
   newItemTitle.textContent= `${name}`;
   const newItemImage= newItemElement.querySelector('.place-card__image')
   newItemImage.src = `${link}`;
+  newItemImage.alt = `${name}`;
   const likeActive = newItemElement.querySelector('.place-card__like')
   likeActive.addEventListener('click', function (event){
   event.target.classList.toggle('place-card__like_active');});
@@ -98,6 +99,7 @@ const getItemElement = (link, name) => {
     toggleOpenImagePopup();
     popupImgTitle.textContent=newItemTitle.textContent;
     popupImgImage.src=newItemImage.src;
+    popupImgImage.alt=newItemImage.alt;
   })
   return newItemElement
 }
