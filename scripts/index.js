@@ -53,8 +53,11 @@ const toggleOpenPopup = (event,item)=>{
   if (event.target === event.currentTarget){
     item.classList.toggle('popup_opened');
   }
+
+}
+
+const closeEscapePopup = (event,item)=>{
   if (event.key === "Escape") {
-    const openedPopup = document.querySelector(".popup_opened");
     item.classList.remove('popup_opened');
 }
 }
@@ -119,6 +122,6 @@ closePupupImgBotton.addEventListener('click',()=>{toggleOpenPopup(event, popupPl
 popupPlaceImg.addEventListener('click',()=> {toggleOpenPopup(event, popupPlaceImg)})
 popupEditProfile.addEventListener('click',openEditPopup)
 popupAdd.addEventListener('click',()=> {toggleOpenPopup(event, popupAdd)})
-document.addEventListener('keydown',()=>{toggleOpenPopup(event,popupAdd)} )
-document.addEventListener('keydown',()=>{toggleOpenPopup(event,popupPlaceImg)} )
-document.addEventListener('keydown',openEditPopup )
+document.addEventListener('keydown',()=>{closeEscapePopup(event,popupAdd)})
+document.addEventListener('keydown',()=>{closeEscapePopup(event,popupPlaceImg)})
+document.addEventListener('keydown',()=>{closeEscapePopup(event,popupEditProfile)})
