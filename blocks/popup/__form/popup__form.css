@@ -1,19 +1,13 @@
-.popup__form {
-  border-top: none;
-  border-left: none;
-  border-right: none;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-  font-family: "Inter";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 1.2;
-  padding-bottom: 8px;
-  width: 100%;
+.popup__form{
+  padding-left: 36px;
+  padding-right: 36px;
+  padding-top: 54px;
 }
 
-
-
-.popup__form:nth-child(2){
-  margin-top: 30px;
+@media screen and (max-width: 400px) {
+  .popup__form {
+    padding-left: 22px;
+    padding-right: 22px;
+    padding-top: 75px;
+  }
 }
