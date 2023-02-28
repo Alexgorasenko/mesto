@@ -44,7 +44,7 @@ const placeCardItem = [
   },
   {
     name: 'Карибское море',
-    link: 'https://priroda.club/uploads/posts/2021-12/thumbs/1639796585_73-priroda-club-p-karibskie-ostrova-priroda-krasivo-foto-78.jpg'
+    link: 'https://vsegda-pomnim.com/uploads/posts/2022-04/1649332183_63-vsegda-pomnim-com-p-karibskoe-more-plyazh-foto-75.jpg'
   },
 ]
 
@@ -53,6 +53,7 @@ const toggleOpenPopup = (event,item)=>{
   if (event.target === event.currentTarget){
     item.classList.toggle('popup_opened');
   }
+
 
 }
 
@@ -68,10 +69,13 @@ const openEditPopup = () =>{
   popupEditProfileFormVocation.value = profileVocation.textContent;
 }
 
+
+
 const addInfo =(event) => {
   event.preventDefault();
   profileName.textContent = popupEditProfileFormName.value;
   profileVocation.textContent = popupEditProfileFormVocation.value ;
+
 }
 
 const getNewPlaceCard = (link, name) => {
@@ -120,8 +124,12 @@ closePopupAddBotton.addEventListener('click', ()=>{toggleOpenPopup(event, popupA
 savePopupAddButton.addEventListener('click', ()=>{toggleOpenPopup(event, popupAdd)});
 closePupupImgBotton.addEventListener('click',()=>{toggleOpenPopup(event, popupPlaceImg)})
 popupPlaceImg.addEventListener('click',()=> {toggleOpenPopup(event, popupPlaceImg)})
-popupEditProfile.addEventListener('click',openEditPopup)
+popupEditProfile.addEventListener('click',()=>{toggleOpenPopup(event, popupEditProfile)})
 popupAdd.addEventListener('click',()=> {toggleOpenPopup(event, popupAdd)})
 document.addEventListener('keydown',()=>{closeEscapePopup(event,popupAdd)})
 document.addEventListener('keydown',()=>{closeEscapePopup(event,popupPlaceImg)})
 document.addEventListener('keydown',()=>{closeEscapePopup(event,popupEditProfile)})
+
+
+
+
