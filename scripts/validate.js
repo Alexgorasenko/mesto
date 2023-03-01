@@ -5,18 +5,24 @@ const formValidationConfig = {
 
 
 
-const enableValidation = (config) =>{
-  const form = document.querySelector(config.formSelector)
-
-  form.addEventListener('submit', (event)=>{
-    event.preventDefault();
-  })
-
+const disableSubmit = (event) =>{
+  event.preventDefault();
 }
 
+
+const addInputListners = (form, config) =>{
+  const inputList = form.querySelector(config.inputSelector);
+  inputList.forEach((item) => {
+    console.log(item)
+  });
+}
+
+const enableValidation = (config) =>{
+  const form = document.querySelector(config.formSelector)
+  addInputListners(form,config)
+  form.addEventListener('submit', disableSubmit)
+  console.log(form)
+}
+
+
 enableValidation (formValidationConfig)
-
-
-
-
-

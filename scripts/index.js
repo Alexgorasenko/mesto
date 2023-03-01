@@ -19,7 +19,6 @@ const closePupupImgBotton= popupPlaceImg.querySelector(".popup-img__close")
 const popupPlaceImgTitle= popupPlaceImg.querySelector('.popup-img__header')
 const popupPlaceImgImage= popupPlaceImg.querySelector('.popup-img__image')
 
-console.log(popupFormEditElement)
 
 const placeCardItem = [
   {
