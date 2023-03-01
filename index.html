@@ -62,19 +62,21 @@
             class="popup__input popup__form_type_name"
             name="name"
             placeholder="Введите имя"
-            id="name_input"
+            id="name-input"
             required
             minlength="2"
             maxlength="40">
+            <span class="form__input-error name-input-error">Вы пропустили это поле.</span>
           <input
             type="text"
             class="popup__input popup__form_type_vocation"
             name="vocation"
             placeholder="Введите описание"
-            id="vocation_input"
+            id="vocation-input"
             required
             minlength="2"
             maxlength="200">
+            <span class="form__input-error vocation-input-error">Вы пропустили это поле.</span>
           <button type="submit" class="popup__save popup-editing__save">Сохранить</button>
         </form>
       </div>
@@ -91,7 +93,7 @@
           method="post"
           class="popup__form popup-add__eddit-form"
           action="/"
-          >
+          novalidate>
           <input
           required
             minlength="2"
@@ -99,6 +101,7 @@
             type="text"
             class="popup__input popup__form_type_title"
             name="title"
+            id="title-input"
             placeholder="Название"
             >
           <span class="form__input-error title-input-error">Вы пропустили это поле.</span>
@@ -106,6 +109,7 @@
             type="url"
             class="popup__input popup__form_type_link"
             name="link"
+            id="link-input"
             placeholder="Ссылка на картинку"
             required>
           <span class="form__input-error link-input-error">Введите адрес сайта.</span>
