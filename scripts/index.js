@@ -3,7 +3,6 @@ const profileName = document.querySelector('.profile__name');
 const profileVocation = document.querySelector('.profile__vocation');
 const popupEditProfile = document.querySelector(".popup-editing")
 const closePopupEditProfileBotton= popupEditProfile.querySelector(".popup-editing__close")
-const savePopupEditProfileButton = popupEditProfile.querySelector('.popup-editing__save');
 const popupEditProfileFormName = popupEditProfile.querySelector('.popup__form_type_name');
 const popupEditProfileFormVocation= popupEditProfile.querySelector('.popup__form_type_vocation');
 const popupFormEditElement= popupEditProfile.querySelector('.popup-editing__eddit-form');
@@ -11,7 +10,6 @@ const places = document.querySelector('.places')
 const templatePlaceCard = document.querySelector('#item')
 const popupAdd = document.querySelector(".popup-add")
 const closePopupAddBotton= popupAdd.querySelector(".popup-add__close")
-const savePopupAddButton = popupAdd.querySelector('.popup-add__save');
 const popupAddFormTitle = popupAdd.querySelector('.popup__form_type_title');
 const popupAddFormLink= popupAdd.querySelector('.popup__form_type_link');
 const popupAddFormLinkElement= popupAdd.querySelector('.popup-add__eddit-form');
@@ -20,6 +18,8 @@ const popupPlaceImg = document.querySelector(".popup-img")
 const closePupupImgBotton= popupPlaceImg.querySelector(".popup-img__close")
 const popupPlaceImgTitle= popupPlaceImg.querySelector('.popup-img__header')
 const popupPlaceImgImage= popupPlaceImg.querySelector('.popup-img__image')
+
+console.log(popupFormEditElement)
 
 const placeCardItem = [
   {
@@ -53,29 +53,25 @@ const toggleOpenPopup = (event,item)=>{
   if (event.target === event.currentTarget){
     item.classList.toggle('popup_opened');
   }
-
-
 }
 
 const closeEscapePopup = (event,item)=>{
   if (event.key === "Escape") {
     item.classList.remove('popup_opened');
-}
+  }
 }
 
-const openEditPopup = () =>{
+const openEditPopup = (event) =>{
   toggleOpenPopup(event, popupEditProfile);
   popupEditProfileFormName.value = profileName.textContent;
   popupEditProfileFormVocation.value = profileVocation.textContent;
 }
 
-
-
 const addInfo =(event) => {
   event.preventDefault();
   profileName.textContent = popupEditProfileFormName.value;
-  profileVocation.textContent = popupEditProfileFormVocation.value ;
-
+  profileVocation.textContent = popupEditProfileFormVocation.value;
+  toggleOpenPopup(event, popupEditProfile);
 }
 
 const getNewPlaceCard = (link, name) => {
@@ -111,24 +107,21 @@ popupAddFormLinkElement.addEventListener('submit', (evt) => {
   evt.preventDefault();
   renderItem(popupAddFormLink.value, popupAddFormTitle.value);
   popupAddFormLinkElement.reset();
-
+  toggleOpenPopup(event, popupAdd)
 })
 
 aboutButton.addEventListener('click', openEditPopup);
 closePopupEditProfileBotton.addEventListener('click', openEditPopup)
-savePopupEditProfileButton.addEventListener('click', addInfo);
-savePopupEditProfileButton.addEventListener('click', openEditPopup);
 popupFormEditElement.addEventListener('submit', addInfo);
+popupEditProfile.addEventListener('click',()=>{toggleOpenPopup(event, popupEditProfile)});
 addPlaceButton.addEventListener('click', ()=>{toggleOpenPopup(event, popupAdd)});
 closePopupAddBotton.addEventListener('click', ()=>{toggleOpenPopup(event, popupAdd)});
-savePopupAddButton.addEventListener('click', ()=>{toggleOpenPopup(event, popupAdd)});
-closePupupImgBotton.addEventListener('click',()=>{toggleOpenPopup(event, popupPlaceImg)})
-popupPlaceImg.addEventListener('click',()=> {toggleOpenPopup(event, popupPlaceImg)})
-popupEditProfile.addEventListener('click',()=>{toggleOpenPopup(event, popupEditProfile)})
-popupAdd.addEventListener('click',()=> {toggleOpenPopup(event, popupAdd)})
-document.addEventListener('keydown',()=>{closeEscapePopup(event,popupAdd)})
-document.addEventListener('keydown',()=>{closeEscapePopup(event,popupPlaceImg)})
-document.addEventListener('keydown',()=>{closeEscapePopup(event,popupEditProfile)})
+popupAdd.addEventListener('click',()=> {toggleOpenPopup(event, popupAdd)});
+closePupupImgBotton.addEventListener('click',()=>{toggleOpenPopup(event, popupPlaceImg)});
+popupPlaceImg.addEventListener('click',()=> {toggleOpenPopup(event, popupPlaceImg)});
+document.addEventListener('keydown',()=>{closeEscapePopup(event,popupAdd)});
+document.addEventListener('keydown',()=>{closeEscapePopup(event,popupPlaceImg)});
+document.addEventListener('keydown',()=>{closeEscapePopup(event,popupEditProfile)});
 
 
 
