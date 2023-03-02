@@ -3,21 +3,22 @@ const profileName = document.querySelector('.profile__name');
 const profileVocation = document.querySelector('.profile__vocation');
 const popupEditProfile = document.querySelector(".popup-editing")
 const closePopupEditProfileBotton= popupEditProfile.querySelector(".popup-editing__close")
-const popupEditProfileFormName = popupEditProfile.querySelector('.popup__input_type_name');
-const popupEditProfileFormVocation= popupEditProfile.querySelector('.popup__input_type_vocation');
+const popupEditProfileFormName = popupEditProfile.querySelector('.popup__form_type_name');
+const popupEditProfileFormVocation= popupEditProfile.querySelector('.popup__form_type_vocation');
 const popupFormEditElement= popupEditProfile.querySelector('.popup-editing__eddit-form');
 const places = document.querySelector('.places')
 const templatePlaceCard = document.querySelector('#item')
 const popupAdd = document.querySelector(".popup-add")
 const closePopupAddBotton= popupAdd.querySelector(".popup-add__close")
-const popupAddFormTitle = popupAdd.querySelector('.popup__input_type_title');
-const popupAddFormLink= popupAdd.querySelector('.popup__input_type_link');
+const popupAddFormTitle = popupAdd.querySelector('.popup__form_type_title');
+const popupAddFormLink= popupAdd.querySelector('.popup__form_type_link');
 const popupAddFormLinkElement= popupAdd.querySelector('.popup-add__eddit-form');
 const addPlaceButton= document.querySelector('.profile__add')
 const popupPlaceImg = document.querySelector(".popup-img")
 const closePupupImgBotton= popupPlaceImg.querySelector(".popup-img__close")
 const popupPlaceImgTitle= popupPlaceImg.querySelector('.popup-img__header')
 const popupPlaceImgImage= popupPlaceImg.querySelector('.popup-img__image')
+
 
 const placeCardItem = [
   {
@@ -45,6 +46,7 @@ const placeCardItem = [
     link: 'https://vsegda-pomnim.com/uploads/posts/2022-04/1649332183_63-vsegda-pomnim-com-p-karibskoe-more-plyazh-foto-75.jpg'
   },
 ]
+
 
 const toggleOpenPopup = (event,item)=>{
   if (event.target === event.currentTarget){
