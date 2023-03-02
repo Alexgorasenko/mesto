@@ -1,7 +1,5 @@
 .popup__input {
-  border-top: none;
-  border-left: none;
-  border-right: none;
+  border: none;
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
   font-family: "Inter";
   font-style: normal;
