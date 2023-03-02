@@ -19,7 +19,6 @@ const closePupupImgBotton= popupPlaceImg.querySelector(".popup-img__close")
 const popupPlaceImgTitle= popupPlaceImg.querySelector('.popup-img__header')
 const popupPlaceImgImage= popupPlaceImg.querySelector('.popup-img__image')
 
-
 const placeCardItem = [
   {
     name: 'Луна',
@@ -46,7 +45,6 @@ const placeCardItem = [
     link: 'https://vsegda-pomnim.com/uploads/posts/2022-04/1649332183_63-vsegda-pomnim-com-p-karibskoe-more-plyazh-foto-75.jpg'
   },
 ]
-
 
 const toggleOpenPopup = (event,item)=>{
   if (event.target === event.currentTarget){
