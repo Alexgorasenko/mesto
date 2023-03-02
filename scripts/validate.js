@@ -5,7 +5,6 @@ const formValidationCinfig = {
   errorClass: "form__input-error_active",
   buttunDisableClass: "form__input-error_active",
   submitButtonSelector: ".popup__save",
-
 };
 
 const showInputError = (formElement,inputElement, errorMessage,config) => {
@@ -39,6 +38,7 @@ const hasInvalidInput =(inputList)=>{
 const toggleButtonState = (inputList, buttonElement) =>{
   if(hasInvalidInput (inputList)){
     buttonElement.disabled = true;
+
   }else{
     buttonElement.disabled = false;
   }

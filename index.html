@@ -57,6 +57,7 @@
           action="/"
           novalidate
           >
+          <label  class="popup__label">
           <input
             type="text"
             class="popup__input popup__form_type_name"
@@ -67,6 +68,8 @@
             minlength="2"
             maxlength="40">
             <span class="form__input-error name-input-error">Вы пропустили это поле.</span>
+          </label>
+          <label  class="popup__label">
           <input
             type="text"
             class="popup__input popup__form_type_vocation"
@@ -77,6 +80,7 @@
             minlength="2"
             maxlength="200">
             <span class="form__input-error vocation-input-error">Вы пропустили это поле.</span>
+          </label>
           <button type="submit" class="popup__save popup-editing__save ">Сохранить</button>
         </form>
       </div>
@@ -94,6 +98,7 @@
           class="popup__form popup-add__eddit-form"
           action="/"
           novalidate>
+          <label  class="popup__label">
           <input
           required
             minlength="2"
@@ -105,6 +110,8 @@
             placeholder="Название"
             >
           <span class="form__input-error title-input-error">Вы пропустили это поле.</span>
+        </label>
+          <label  class="popup__label">
           <input
             type="url"
             class="popup__input popup__form_type_link"
@@ -113,7 +120,8 @@
             placeholder="Ссылка на картинку"
             required>
           <span class="form__input-error link-input-error">Введите адрес сайта.</span>
-          <button type="submit" class="popup__save popup-add__save">Cоздать</button>
+        </label>
+          <button type="submit" class="popup__save popup-add__save" disabled>Cоздать</button>
         </form>
       </div>
 
