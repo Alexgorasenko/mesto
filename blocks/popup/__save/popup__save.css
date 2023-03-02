@@ -21,6 +21,14 @@
   opacity: 0.8;
 }
 
+.popup__save:disabled{
+  opacity: 0.2;
+  color: #000000;
+  background-color: #ffffff;
+  border: 1px solid #000;
+  cursor: default;
+}
+
 @media screen and (max-width: 500px) {
   .popup__save {
     height: 46px;
