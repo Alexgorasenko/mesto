@@ -56,7 +56,6 @@ const setEventListeners = (formElement, config)=>{
     inputElement.addEventListener('input',()=>{
       isValid(formElement,inputElement,config)
       toggleButtonState (inputList, buttonElement,config)
-
     })
     });
 }
