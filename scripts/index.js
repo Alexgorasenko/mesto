@@ -55,7 +55,7 @@ const openPopup = (popup) => {
 const closePopup = (popup) => {
   popup.classList.remove("popup_opened");
   document.removeEventListener("keydown", closeByEscape);
-  popup.removeEventListener("click", clickOverlay);
+  popup.removeEventListener("mousedown", clickOverlay);
 };
 
 function closeByEscape(event) {
@@ -67,8 +67,7 @@ function closeByEscape(event) {
 
 function clickOverlay(event) {
   if (event.target === event.currentTarget) {
-    const openedPopup = document.querySelector(".popup_opened");
-    closePopup(openedPopup);
+    closePopup(event.currentTarget);
   }
 }
 
