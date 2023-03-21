@@ -1,3 +1,4 @@
+
 const formValidationCinfig = {
   formSelector: ".popup__form",
   inputSelector: ".popup__input",
@@ -29,7 +30,7 @@ const isValid = (formElement, inputElement,config) => {
   }
 };
 
-const hasInvalidInput =(inputList)=>{
+const hasInvalidInput = (inputList) => {
   return inputList.some((inputElement)=>{
     return !inputElement.validity.valid
   })

@@ -19,6 +19,8 @@ const closePupupImgBotton = popupPlaceImg.querySelector(".popup-img__close");
 const popupPlaceImgTitle = popupPlaceImg.querySelector(".popup-img__header");
 const popupPlaceImgImage = popupPlaceImg.querySelector(".popup-img__image");
 
+import Card from "./Card.js";
+
 const placeCardItem = [
   {
     name: "Луна",
@@ -84,7 +86,64 @@ const addInfo = (event) => {
   closePopup(popupEditProfile);
 };
 
-const getNewPlaceCard = (link, name) => {
+const openPopupImage = (title, imageUrl) => {
+  openPopup (popupPlaceImg)
+  popupPlaceImgImage.setAttribute('src', imageUrl)
+  popupPlaceImgImage.setAttribute('alt', title)
+  popupPlaceImgTitle.textContent= title
+}
+
+const render = (link, title) => {
+  const cardData = {
+    title: title,
+    link: link,
+  };
+
+  const card = new Card(cardData, "#item", openPopupImage);
+  places.prepend(card.renderCard());
+};
+
+
+placeCardItem.forEach((item) => {
+  render(item.link, item.name);
+});
+
+
+
+
+
+
+
+popupAddFormLinkElement.addEventListener("submit", (evt) => {
+  evt.preventDefault();
+  render(popupAddFormLink.value, popupAddFormTitle.value);
+  popupAddFormLinkElement.reset();
+  closePopup(popupAdd);
+});
+
+aboutButton.addEventListener("click", openEditPopup);
+closePopupEditProfileBotton.addEventListener("click", () => {
+  closePopup(popupEditProfile);
+});
+popupFormEditElement.addEventListener("submit", addInfo);
+addPlaceButton.addEventListener("click", () => {
+  openPopup(popupAdd);
+});
+closePopupAddBotton.addEventListener("click", () => {
+  closePopup(popupAdd);
+});
+closePupupImgBotton.addEventListener("click", () => {
+  closePopup(popupPlaceImg);
+});
+
+
+
+
+
+
+
+
+/*const getNewPlaceCard = (link, name) => {
   const newPlaceCard = templatePlaceCard.content.cloneNode(true);
   const newPlaceCardTitle = newPlaceCard.querySelector(".place-card__title");
   newPlaceCardTitle.textContent = `${name}`;
@@ -110,30 +169,4 @@ const getNewPlaceCard = (link, name) => {
 
 const renderItem = (link, name) => {
   places.prepend(getNewPlaceCard(link, name));
-};
-
-placeCardItem.forEach((item) => {
-  renderItem(item.link, item.name);
-});
-
-popupAddFormLinkElement.addEventListener("submit", (evt) => {
-  evt.preventDefault();
-  renderItem(popupAddFormLink.value, popupAddFormTitle.value);
-  popupAddFormLinkElement.reset();
-  closePopup(popupAdd);
-});
-
-aboutButton.addEventListener("click", openEditPopup);
-closePopupEditProfileBotton.addEventListener("click", () => {
-  closePopup(popupEditProfile);
-});
-popupFormEditElement.addEventListener("submit", addInfo);
-addPlaceButton.addEventListener("click", () => {
-  openPopup(popupAdd);
-});
-closePopupAddBotton.addEventListener("click", () => {
-  closePopup(popupAdd);
-});
-closePupupImgBotton.addEventListener("click", () => {
-  closePopup(popupPlaceImg);
-});
+};*/
