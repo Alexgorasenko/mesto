@@ -20,6 +20,7 @@ const popupPlaceImgTitle = popupPlaceImg.querySelector(".popup-img__header");
 const popupPlaceImgImage = popupPlaceImg.querySelector(".popup-img__image");
 
 import Card from "./Card.js";
+import FormValidator from "./FormValidator.js";
 
 const placeCardItem = [
   {
@@ -47,6 +48,23 @@ const placeCardItem = [
     link: "https://vsegda-pomnim.com/uploads/posts/2022-04/1649332183_63-vsegda-pomnim-com-p-karibskoe-more-plyazh-foto-75.jpg",
   },
 ];
+
+const formValidationConfig = {
+  formSelector: ".popup__form",
+  inputSelector: ".popup__input",
+  inputErrorClass: "form__input_type_error",
+  errorClass: "form__input-error_active",
+  submitButtonSelector: ".popup__save",
+};
+
+const formValidationProfileEdit = new FormValidator(
+  formValidationConfig,
+  popupFormEditElement
+);
+const formValidationAddPlace = new FormValidator(
+  formValidationConfig,
+  popupAddFormLinkElement
+);
 
 const openPopup = (popup) => {
   popup.classList.add("popup_opened");
@@ -77,6 +95,7 @@ const openEditPopup = () => {
   openPopup(popupEditProfile);
   popupEditProfileFormName.value = profileName.textContent;
   popupEditProfileFormVocation.value = profileVocation.textContent;
+  formValidationProfileEdit.resetValidation();
 };
 
 const addInfo = (event) => {
@@ -87,38 +106,34 @@ const addInfo = (event) => {
 };
 
 const openPopupImage = (title, imageUrl) => {
-  openPopup (popupPlaceImg)
-  popupPlaceImgImage.setAttribute('src', imageUrl)
-  popupPlaceImgImage.setAttribute('alt', title)
-  popupPlaceImgTitle.textContent= title
-}
+  openPopup(popupPlaceImg);
+  popupPlaceImgImage.setAttribute("src", imageUrl);
+  popupPlaceImgImage.setAttribute("alt", title);
+  popupPlaceImgTitle.textContent = title;
+};
 
 const render = (link, title) => {
   const cardData = {
     title: title,
     link: link,
   };
-
   const card = new Card(cardData, "#item", openPopupImage);
   places.prepend(card.renderCard());
 };
-
 
 placeCardItem.forEach((item) => {
   render(item.link, item.name);
 });
 
-
-
-
-
-
+formValidationProfileEdit.enableValidation();
+formValidationAddPlace.enableValidation();
 
 popupAddFormLinkElement.addEventListener("submit", (evt) => {
   evt.preventDefault();
   render(popupAddFormLink.value, popupAddFormTitle.value);
   popupAddFormLinkElement.reset();
   closePopup(popupAdd);
+  formValidationAddPlace.resetValidation();
 });
 
 aboutButton.addEventListener("click", openEditPopup);
@@ -136,37 +151,3 @@ closePupupImgBotton.addEventListener("click", () => {
   closePopup(popupPlaceImg);
 });
 
-
-
-
-
-
-
-
-/*const getNewPlaceCard = (link, name) => {
-  const newPlaceCard = templatePlaceCard.content.cloneNode(true);
-  const newPlaceCardTitle = newPlaceCard.querySelector(".place-card__title");
-  newPlaceCardTitle.textContent = `${name}`;
-  const newPlaceCardImage = newPlaceCard.querySelector(".place-card__image");
-  newPlaceCardImage.src = `${link}`;
-  newPlaceCardImage.alt = `${name}`;
-  const placeCardLikeActive = newPlaceCard.querySelector(".place-card__like");
-  placeCardLikeActive.addEventListener("click", (event) => {
-    event.target.classList.toggle("place-card__like_active");
-  });
-  const deletePlaceCardButton = newPlaceCard.querySelector(".place-card__delete");
-  deletePlaceCardButton.addEventListener("click", (evt) => {
-    evt.target.closest(".place-card").remove();
-  });
-  newPlaceCardImage.addEventListener("click", () => {
-    openPopup(popupPlaceImg);
-    popupPlaceImgTitle.textContent = newPlaceCardTitle.textContent;
-    popupPlaceImgImage.src = newPlaceCardImage.src;
-    popupPlaceImgImage.alt = newPlaceCardImage.alt;
-  });
-  return newPlaceCard;
-};
-
-const renderItem = (link, name) => {
-  places.prepend(getNewPlaceCard(link, name));
-};*/
