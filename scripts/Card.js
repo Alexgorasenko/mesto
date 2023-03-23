@@ -1,6 +1,6 @@
 class Card {
   constructor(data, templateSelector, openPopupImage) {
-    this._title = data.title;
+    this._title = data.name;
     this._imageUrl = data.link;
     this._templateSelector = templateSelector;
     this._template = this._getTemplate();
@@ -38,8 +38,6 @@ class Card {
   _clickCardLike() {
     this._like.classList.toggle("place-card__like_active");
   }
-
-
 
   renderCard() {
     this._cardImage.src = this._imageUrl;

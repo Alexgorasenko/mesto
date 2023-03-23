@@ -112,19 +112,22 @@ const openPopupImage = (title, imageUrl) => {
   popupPlaceImgTitle.textContent = title;
 };
 
+const createCard = (data) => {
+  const card = new Card(data, "#item", openPopupImage);
+  return card.renderCard();
+}
 
+const renderNewPlace = (data) => {
+  placesContainer.prepend(data);
+};
 
-const render = (link, title) => {
-  const cardData = {
-    title: title,
-    link: link,
-  };
-  const card = new Card (cardData, "#item", openPopupImage);
-  placesContainer.prepend(card.renderCard());
+const renderStartPlaces = (data) => {
+  placesContainer.prepend(data);
 };
 
 placeCardItem.forEach((item) => {
-  render(item.link, item.name);
+  const newCard = createCard(item)
+  renderStartPlaces(newCard);
 });
 
 formValidationProfileEdit.enableValidation();
@@ -132,8 +135,12 @@ formValidationAddPlace.enableValidation();
 
 popupAddFormLinkElement.addEventListener("submit", (evt) => {
   evt.preventDefault();
-
-  render(popupAddFormLink.value, popupAddFormTitle.value);
+  const cardItem ={
+    name: popupAddFormTitle.value,
+    link: popupAddFormLink.value,
+  }
+  const newCard = createCard(cardItem)
+  renderNewPlace(newCard);
   popupAddFormLinkElement.reset();
   closePopup(popupAdd);
   formValidationAddPlace.resetValidation();
