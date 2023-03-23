@@ -32,6 +32,7 @@ class Card {
 
   _clickCardDelete() {
     this._element.remove();
+    this._element = null;
   }
 
   _clickCardLike() {
