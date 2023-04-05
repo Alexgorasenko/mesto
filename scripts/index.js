@@ -1,57 +1,56 @@
-const aboutButton = document.querySelector(".profile__button_type_edit");
-const profileName = document.querySelector(".profile__name");
-const profileVocation = document.querySelector(".profile__vocation");
-const popupEditProfile = document.querySelector(".popup-editing");
-const popupEditProfileFormName = popupEditProfile.querySelector(".popup__input_type_name");
-const popupEditProfileFormVocation = popupEditProfile.querySelector(".popup__input_type_vocation");
-const popupFormEditElement = document.forms["form-edit-profile"];
-const placesContainer = document.querySelector(".places");
-const popupAdd = document.querySelector(".popup-add");
-const popupAddFormTitle = popupAdd.querySelector(".popup__input_type_title");
-const popupAddFormLink = popupAdd.querySelector(".popup__input_type_link");
-const popupAddFormLinkElement = document.forms["form-add-place"];
-const addPlaceButton = document.querySelector(".profile__add");
-const popupPlaceImg = document.querySelector(".popup-img");
-const popupPlaceImgTitle = popupPlaceImg.querySelector(".popup-img__header");
-const popupPlaceImgImage = popupPlaceImg.querySelector(".popup-img__image");
-const popupCloseBotton = document.querySelectorAll(".popup__close");
-
 import Card from "./Card.js";
+import Section from "./Section.js";
 import FormValidator from "./FormValidator.js";
+import PopupWithForm from "./PopupWithForm.js";
+import PopupWithImage from "./PopupWithImage.js";
+import UserInfo from "./UserInfo.js";
 
-const placeCardItem = [
-  {
-    name: "Луна",
-    link: "https://m3.netinfo.bg/media/images/46548/46548158/1024-768-luna.jpg",
-  },
-  {
-    name: "Балтийское море",
-    link: "https://gamerwall.pro/uploads/posts/2022-06/thumbs/1655671870_7-gamerwall-pro-p-volni-na-reke-priroda-krasivo-foto-10.jpg",
-  },
-  {
-    name: "Пустыня Сахара",
-    link: "https://www.biletik.aero/upload/medialibrary/be5/be5ec1c4b6131ec3784cd00f50b148d3.jpg",
-  },
-  {
-    name: "Япония",
-    link: "https://i.pinimg.com/736x/76/8b/93/768b93d33b176d6d17b51c9b427ece07.jpg",
-  },
-  {
-    name: "Гималаи",
-    link: "https://vsegda-pomnim.com/uploads/posts/2022-04/1650925320_25-vsegda-pomnim-com-p-gori-gimalai-foto-25.jpg",
-  },
-  {
-    name: "Карибское море",
-    link: "https://vsegda-pomnim.com/uploads/posts/2022-04/1649332183_63-vsegda-pomnim-com-p-karibskoe-more-plyazh-foto-75.jpg",
-  },
-];
+import {
+  aboutButton,
+  popupEditProfileFormName,
+  popupEditProfileFormVocation,
+  popupFormEditElement,
+  placesContainer,
+  popupAddFormTitle,
+  popupAddFormLink,
+  popupAddFormLinkElement,
+  addPlaceButton,
+  placeCardItem,
+  formValidationConfig
+} from "./constants.js"
 
-const formValidationConfig = {
-  formSelector: ".popup__form",
-  inputSelector: ".popup__input",
-  inputErrorClass: "form__input_type_error",
-  errorClass: "form__input-error_active",
-  submitButtonSelector: ".popup__save",
+const handleFormSubmitEdit = ()=> {
+  userInfo.setUserInfo({
+    userName: popupEditProfileFormName.value,
+    userAbout: popupEditProfileFormVocation.value,
+  });
+}
+
+const createCard = (data) => {
+  const card = new Card(data, "#item", () => {
+    imgPopup.open(item);
+  });
+  return card.renderCard();
+};
+
+const renderPlaces = (data) => {
+  placesContainer.prepend(createCard(data));
+};
+
+const addPlaceCard = () => {
+  const cardItem = {
+    name: popupAddFormTitle.value,
+    link: popupAddFormLink.value,
+  };
+  renderPlaces(cardItem);
+}
+
+const openEditPopup = () => {
+  const currentUserInfo = userInfo.getUserInfo();
+  popupEditProfileFormName.value = currentUserInfo.userName;
+  popupEditProfileFormVocation.value = currentUserInfo.userAbout;
+  formValidationProfileEdit.resetValidation();
+  editPopup.open();
 };
 
 const formValidationProfileEdit = new FormValidator(
@@ -63,95 +62,32 @@ const formValidationAddPlace = new FormValidator(
   popupAddFormLinkElement
 );
 
-const openPopup = (popup) => {
-  popup.classList.add("popup_opened");
-  popup.addEventListener("mousedown", clickOverlay);
-  document.addEventListener("keydown", closeByEscape);
-};
-
-const closePopup = (popup) => {
-  popup.classList.remove("popup_opened");
-  document.removeEventListener("keydown", closeByEscape);
-  popup.removeEventListener("mousedown", clickOverlay);
-};
-
-function closeByEscape(event) {
-  if (event.key === "Escape") {
-    const openedPopup = document.querySelector(".popup_opened");
-    closePopup(openedPopup);
-  }
-}
-
-function clickOverlay(event) {
-  if (event.target === event.currentTarget) {
-    closePopup(event.currentTarget);
-  }
-}
-
-const openEditPopup = () => {
-  openPopup(popupEditProfile);
-  popupEditProfileFormName.value = profileName.textContent;
-  popupEditProfileFormVocation.value = profileVocation.textContent;
-  formValidationProfileEdit.resetValidation();
-};
-
-const addInfo = (event) => {
-  event.preventDefault();
-  profileName.textContent = popupEditProfileFormName.value;
-  profileVocation.textContent = popupEditProfileFormVocation.value;
-  closePopup(popupEditProfile);
-};
-
-const openPopupImage = (title, imageUrl) => {
-  openPopup(popupPlaceImg);
-  popupPlaceImgImage.setAttribute("src", imageUrl);
-  popupPlaceImgImage.setAttribute("alt", title);
-  popupPlaceImgTitle.textContent = title;
-};
-
-const createCard = (data) => {
-  const card = new Card(data, "#item", openPopupImage);
-  return card.renderCard();
-};
-
-const renderNewPlace = (data) => {
-  placesContainer.prepend(data);
-};
-
-const renderStartPlaces = (data) => {
-  placesContainer.prepend(data);
-};
-
-placeCardItem.forEach((item) => {
-  const newCard = createCard(item);
-  renderStartPlaces(newCard);
+const addPopup = new PopupWithForm(".popup-add", addPlaceCard);
+const editPopup = new PopupWithForm(".popup-editing", handleFormSubmitEdit);
+const imgPopup = new PopupWithImage(".popup-img");
+const userInfo = new UserInfo({
+  nameSelector: ".profile__name",
+  aboutSelector: ".profile__vocation",
 });
+const places = new Section(
+  {
+    items: placeCardItem,
+    renderer: (data) => {
+      places.addItem(createCard(data));
+    },
+  },
+  placesContainer
+);
 
+
+places.renderItems();
 formValidationProfileEdit.enableValidation();
 formValidationAddPlace.enableValidation();
-
-popupCloseBotton.forEach((button) => {
-  const buttonsPopup = button.closest(".popup");
-  button.addEventListener("click", () => {
-    closePopup(buttonsPopup);
-  });
-});
-
-popupAddFormLinkElement.addEventListener("submit", (evt) => {
-  evt.preventDefault();
-  const cardItem = {
-    name: popupAddFormTitle.value,
-    link: popupAddFormLink.value,
-  };
-  const newCard = createCard(cardItem);
-  renderNewPlace(newCard);
-  popupAddFormLinkElement.reset();
-  closePopup(popupAdd);
-  formValidationAddPlace.resetValidation();
-});
+addPopup.setEventListeners();
+editPopup.setEventListeners();
+imgPopup.setEventListeners();
 
 aboutButton.addEventListener("click", openEditPopup);
-popupFormEditElement.addEventListener("submit", addInfo);
 addPlaceButton.addEventListener("click", () => {
-  openPopup(popupAdd);
+  addPopup.open();
 });
