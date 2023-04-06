@@ -19,18 +19,22 @@ import {
   formValidationConfig
 } from "../utils/constants.js"
 
+
 const handleFormSubmitEdit = ()=> {
   userInfo.setUserInfo({
     userName: popupEditProfileFormName.value,
     userAbout: popupEditProfileFormVocation.value,
   });
 }
+const imgPopup = new PopupWithImage(".popup-img");
 
 const createCard = (data) => {
   const card = new Card(data, "#item", () => {
-    imgPopup.open(item);
+    imgPopup.open(data);
+
   });
   return card.renderCard();
+
 };
 
 const renderPlaces = (data) => {
@@ -64,7 +68,7 @@ const formValidationAddPlace = new FormValidator(
 
 const addPopup = new PopupWithForm(".popup-add", addPlaceCard);
 const editPopup = new PopupWithForm(".popup-editing", handleFormSubmitEdit);
-const imgPopup = new PopupWithImage(".popup-img");
+
 const userInfo = new UserInfo({
   nameSelector: ".profile__name",
   aboutSelector: ".profile__vocation",
@@ -90,4 +94,5 @@ imgPopup.setEventListeners();
 aboutButton.addEventListener("click", openEditPopup);
 addPlaceButton.addEventListener("click", () => {
   addPopup.open();
+  formValidationAddPlace.resetValidation()
 });
