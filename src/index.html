@@ -4,13 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Место</title>
-    <link rel="stylesheet" href="./pages/index.css">
   </head>
   <body>
     <div class="page">
       <header class="header">
         <img
-          src="./images/header__logo.svg"
+          src="<%=require('./images/header__logo.svg')%>"
           alt="Место Россия"
           class="header__logo">
       </header>
@@ -18,7 +17,7 @@
         <section class="profile">
           <div class="profile__information">
             <img
-              src="./images/Kusto.png"
+              src="<%=require('./images/Kusto.png')%>"
               alt="Жак-Ив Кусто"
               class="profile__avatar">
             <div class="profile__description">
@@ -130,7 +129,7 @@
           type="button"
           class="popup__close popup-img__close"></button>
         <img
-          src="./images/place-Japan.png"
+          src="<%=require('./images/place-Japan.png')%>"
           alt="Места"
           class="popup-img__image">
         <h3 class="popup-img__header">Новое место</h3>
@@ -140,7 +139,7 @@
       <article class="place-card">
         <div class="place-card__picture">
           <img
-            src="./images/place-baltic-sea.png"
+            src="<%=require('./images/place-baltic-sea.png')%>"
             alt="Места"
             class="place-card__image">
           <button
@@ -157,6 +156,5 @@
         </div>
       </article>
     </template>
-    <script src="./scripts/index.js" type="module"></script>
   </body>
 </html>
