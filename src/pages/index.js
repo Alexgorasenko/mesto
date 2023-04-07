@@ -4,7 +4,7 @@ import FormValidator from "../components/FormValidator.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import UserInfo from "../components/UserInfo.js";
-import './index.css';
+import "./index.css";
 import {
   aboutButton,
   popupEditProfileFormName,
@@ -16,38 +16,36 @@ import {
   popupAddFormLinkElement,
   addPlaceButton,
   placeCardItem,
-  formValidationConfig
-} from "../utils/constants.js"
+  formValidationConfig,
+} from "../utils/constants.js";
 
-
-const handleFormSubmitEdit = ()=> {
+const handleFormSubmitEdit = (input) => {
   userInfo.setUserInfo({
-    userName: popupEditProfileFormName.value,
-    userAbout: popupEditProfileFormVocation.value,
+    userName: input.name,
+    userAbout: input.vocation,
   });
-}
+};
+
 const imgPopup = new PopupWithImage(".popup-img");
 
 const createCard = (data) => {
   const card = new Card(data, "#item", () => {
     imgPopup.open(data);
-
   });
   return card.renderCard();
-
 };
 
 const renderPlaces = (data) => {
   places.prependItem(createCard(data));
 };
 
-const addPlaceCard = () => {
+const addPlaceCard = (input) => {
   const cardItem = {
-    name: popupAddFormTitle.value,
-    link: popupAddFormLink.value,
+    name: input.title,
+    link: input.link,
   };
   renderPlaces(cardItem);
-}
+};
 
 const openEditPopup = () => {
   const currentUserInfo = userInfo.getUserInfo();
@@ -83,7 +81,6 @@ const places = new Section(
   placesContainer
 );
 
-
 places.renderItems();
 formValidationProfileEdit.enableValidation();
 formValidationAddPlace.enableValidation();
@@ -94,5 +91,5 @@ imgPopup.setEventListeners();
 aboutButton.addEventListener("click", openEditPopup);
 addPlaceButton.addEventListener("click", () => {
   addPopup.open();
-  formValidationAddPlace.resetValidation()
+  formValidationAddPlace.resetValidation();
 });
