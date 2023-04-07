@@ -13,6 +13,11 @@ export default class Section {
     });
   }
 
+  // Публичный метод, который вставляет карточки в DOM.
+  prependItem(element) {
+    this._container.prepend(element);
+  }
+
   // Публичный метод, который принимает DOM-элемент и добавляет его в контейнер.
   addItem(element) {
     this._container.append(element);

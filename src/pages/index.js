@@ -38,7 +38,7 @@ const createCard = (data) => {
 };
 
 const renderPlaces = (data) => {
-  placesContainer.prepend(createCard(data));
+  places.prependItem(createCard(data));
 };
 
 const addPlaceCard = () => {
