@@ -5,7 +5,7 @@ export default class PopupDelete extends Popup {
     super(popupSelector);
     this._submitCallback = submitCallback;
     this._deleteButton = this._popup.querySelector(
-      ".popup-place__delete-button"
+      ".popup-delete__delete-button"
     );
     this._deleteButtonText = this._deleteButton.textContent;
   }

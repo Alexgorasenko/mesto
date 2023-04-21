@@ -57,7 +57,7 @@
   </div>
   <div class="popup popup-add ">
     <div class="popup__container">
-      <button aria-label="Закрытие попапа" type="button" class="popup__close popup-add__close"></button>
+      <button aria-label="Закрытие попапа" type="button" class="popup__close"></button>
       <h3 class="popup__header">Новое место</h3>
       <form name="form-add-place" method="post" class="popup__form popup-add__eddit-form form" action="/" novalidate>
         <label class="popup__form-label">
@@ -76,25 +76,25 @@
   </div>
   <div class="popup popup-avatar-edit">
     <div class="popup__container">
-      <button aria-label="Закрытие попапа" type="button" class="popup__close popup-add__close"></button>
+      <button aria-label="Закрытие попапа" type="button" class="popup__close"></button>
       <h3 class="popup__header">Обновить аватар</h3>
-      <form name="form-edit-avatar" method="post" class="popup__form popup-add__eddit-avatar form" action="/"
+      <form name="form-edit-avatar" method="post" class="popup__form  form" action="/"
         novalidate>
         <label class="popup__form-label">
-          <input type="url" class="popup__input popup__input_type_link" name="avatar" id="avatar-link-input"
+          <input type="url" class="popup__input popup__input_type_link" name="avatar" id="avatar-input"
             placeholder="Ссылка на картинку" required>
-          <span class="form__input-error link-input-error">Введите адрес сайта.</span>
+          <span class="form__input-error avatar-input-error">Введите адрес сайта.</span>
         </label>
-        <button type="submit" class="popup__save popup-add__save" disabled>Сохранить</button>
+        <button type="submit" class="popup__save " disabled>Сохранить</button>
       </form>
     </div>
   </div>
   <div class="popup popup-delete">
     <div class="popup__container">
-      <button aria-label="Закрытие попапа" type="button" class="popup__close popup-add__close"></button>
+      <button aria-label="Закрытие попапа" type="button" class="popup__close"></button>
       <h3 class="popup__header">Вы уверены?</h3>
       <div class="popup__form ">
-        <button type="submit" class="popup__save popup-place__delete-button">Да</button>
+        <button type="submit" class="popup__save popup-delete__delete-button">Да</button>
       </div>
     </div>
   </div>
