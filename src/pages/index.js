@@ -3,54 +3,123 @@ import Section from "../components/Section.js";
 import FormValidator from "../components/FormValidator.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import PopupWithImage from "../components/PopupWithImage.js";
+import PopupDelete from "../components/PopupDelete.js";
 import UserInfo from "../components/UserInfo.js";
 import "./index.css";
+import { api } from "../components/Api.js";
+
 import {
   aboutButton,
   popupEditProfileFormName,
   popupEditProfileFormVocation,
   popupFormEditElement,
   placesContainer,
-  popupAddFormTitle,
-  popupAddFormLink,
+  editAvatarButton,
   popupAddFormLinkElement,
+  popupFormEditAvatar,
   addPlaceButton,
-  placeCardItem,
   formValidationConfig,
 } from "../utils/constants.js";
 
-const handleFormSubmitEdit = (input) => {
-  userInfo.setUserInfo({
-    userName: input.name,
-    userAbout: input.vocation,
+const userInfo = new UserInfo({
+  name: ".profile__name",
+  about: ".profile__vocation",
+  avatar: ".profile__avatar",
+});
+
+Promise.all([api.getUserInfo(), api.getPlaceCards()]).then(
+  ([userData, placeCards]) => {
+    userInfo.setUserInfo(userData);
+    places.renderItems(placeCards);
+  }
+);
+
+const places = new Section((data) => {
+  places.addItem(createCard(data));
+}, placesContainer);
+
+const putLike = (card) => {
+  api.putLike(card.getId()).then((res) => {
+    card.clickCardLike(res);
   });
 };
 
-const imgPopup = new PopupWithImage(".popup-img");
+const deleteLike = (card) => {
+  api.deleteLike(card.getId()).then((res) => {
+    card.clickCardLike(res);
+  });
+};
 
 const createCard = (data) => {
-  const card = new Card(data, "#item", () => {
-    imgPopup.open(data);
-  });
+  const card = new Card(
+    data,
+    "#item",
+    () => {
+      imgPopup.open(data);
+    },
+    () => {
+      popupDelete.open(data, card.element);
+    },
+    userInfo.userId,
+    putLike,
+    deleteLike
+  );
+
   return card.renderCard();
 };
 
-const renderPlaces = (data) => {
-  places.prependItem(createCard(data));
+const handlePlaceSubmitDelete = () => {
+  popupDelete.renderLoading(true, "Удаление...");
+  api.deleteCard(popupDelete.cardId)
+    .then(() => {
+      popupDelete.close();
+      popupDelete.card.remove();
+    })
+    .finally(() => {
+      popupDelete.renderLoading(false);
+    });
+};
+
+const handleAvatarEditSubmit = (input) => {
+  editAvatar.renderLoading(true, "Coхранение...");
+  api
+    .patchAvatar(input.avatar)
+    .then((data) => {
+      userInfo.setUserInfo(data);
+    })
+    .finally(() => {
+      editAvatar.renderLoading(false);
+    });
+};
+
+const handleFormSubmitEdit = (input) => {
+  editPopup.renderLoading(true, "Coхранение...");
+  api
+    .patchUserInfo(input)
+    .then((data) => {
+      userInfo.setUserInfo(data);
+    })
+    .finally(() => {
+      editPopup.renderLoading(false);
+    });
 };
 
 const addPlaceCard = (input) => {
-  const cardItem = {
-    name: input.title,
-    link: input.link,
-  };
-  renderPlaces(cardItem);
+  addPopup.renderLoading(true, "Создание...");
+  api
+    .postNewCard(input)
+    .then((data) => {
+      places.addItem(createCard(data));
+    })
+    .finally(() => {
+      addPopup.renderLoading(false);
+    });
 };
 
 const openEditPopup = () => {
   const currentUserInfo = userInfo.getUserInfo();
-  popupEditProfileFormName.value = currentUserInfo.userName;
-  popupEditProfileFormVocation.value = currentUserInfo.userAbout;
+  popupEditProfileFormName.value = currentUserInfo.name;
+  popupEditProfileFormVocation.value = currentUserInfo.about;
   formValidationProfileEdit.resetValidation();
   editPopup.open();
 };
@@ -64,30 +133,29 @@ const formValidationAddPlace = new FormValidator(
   popupAddFormLinkElement
 );
 
-const addPopup = new PopupWithForm(".popup-add", addPlaceCard);
-const editPopup = new PopupWithForm(".popup-editing", handleFormSubmitEdit);
-
-const userInfo = new UserInfo({
-  nameSelector: ".profile__name",
-  aboutSelector: ".profile__vocation",
-});
-const places = new Section(
-  {
-    items: placeCardItem,
-    renderer: (data) => {
-      places.addItem(createCard(data));
-    },
-  },
-  placesContainer
+const formValidationAvatarEdit = new FormValidator(
+  formValidationConfig,
+  popupFormEditAvatar
 );
 
-places.renderItems();
+const addPopup = new PopupWithForm(".popup-add", addPlaceCard);
+const editPopup = new PopupWithForm(".popup-editing", handleFormSubmitEdit);
+const editAvatar = new PopupWithForm(".popup-avatar-edit",handleAvatarEditSubmit);
+const popupDelete = new PopupDelete(".popup-delete", handlePlaceSubmitDelete);
+const imgPopup = new PopupWithImage(".popup-img");
+
+editPopup.setEventListeners();
+editAvatar.setEventListeners();
 formValidationProfileEdit.enableValidation();
 formValidationAddPlace.enableValidation();
+formValidationAvatarEdit.enableValidation();
 addPopup.setEventListeners();
-editPopup.setEventListeners();
 imgPopup.setEventListeners();
-
+popupDelete.setEventListeners();
+editAvatarButton.addEventListener("click", () => {
+  editAvatar.open();
+  formValidationAvatarEdit.resetValidation();
+});
 aboutButton.addEventListener("click", openEditPopup);
 addPlaceButton.addEventListener("click", () => {
   addPopup.open();
