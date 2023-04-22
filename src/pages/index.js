@@ -27,27 +27,31 @@ const userInfo = new UserInfo({
   avatar: ".profile__avatar",
 });
 
-Promise.all([api.getUserInfo(), api.getPlaceCards()]).then(
-  ([userData, placeCards]) => {
+Promise.all([api.getUserInfo(), api.getPlaceCards()])
+.then(([userData, placeCards]) => {
     userInfo.setUserInfo(userData);
     places.renderItems(placeCards);
-  }
-);
+  })
+  .catch(console.log);
+
 
 const places = new Section((data) => {
   places.addItem(createCard(data));
 }, placesContainer);
 
 const putLike = (card) => {
-  api.putLike(card.getId()).then((res) => {
+  api.putLike(card.getId())
+  .then((res) => {
     card.clickCardLike(res);
-  });
+  })
+  .catch(console.log);
 };
 
 const deleteLike = (card) => {
   api.deleteLike(card.getId()).then((res) => {
     card.clickCardLike(res);
-  });
+  })
+  .catch(console.log);
 };
 
 const createCard = (data) => {
@@ -77,19 +81,21 @@ const handlePlaceSubmitDelete = () => {
     })
     .finally(() => {
       popupDelete.renderLoading(false);
-    });
+    })
+    .catch(console.log);
 };
 
 const handleAvatarEditSubmit = (input) => {
   editAvatar.renderLoading(true, "Coхранение...");
-  api
-    .patchAvatar(input.avatar)
+  api.patchAvatar(input.avatar)
     .then((data) => {
       userInfo.setUserInfo(data);
+      editAvatar.close()
     })
     .finally(() => {
       editAvatar.renderLoading(false);
-    });
+    })
+    .catch(console.log);
 };
 
 const handleFormSubmitEdit = (input) => {
@@ -98,10 +104,12 @@ const handleFormSubmitEdit = (input) => {
     .patchUserInfo(input)
     .then((data) => {
       userInfo.setUserInfo(data);
+      editPopup.close()
     })
     .finally(() => {
       editPopup.renderLoading(false);
-    });
+    })
+    .catch(console.log);
 };
 
 const addPlaceCard = (input) => {
@@ -110,10 +118,12 @@ const addPlaceCard = (input) => {
     .postNewCard(input)
     .then((data) => {
       places.addItem(createCard(data));
+      addPopup.close()
     })
     .finally(() => {
       addPopup.renderLoading(false);
-    });
+    })
+    .catch(console.log);
 };
 
 const openEditPopup = () => {

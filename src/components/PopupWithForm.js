@@ -25,7 +25,6 @@ export default class PopupWithForm extends Popup {
       this._formButton.textContent = text;
     } else {
       this._formButton.textContent = this._formButtonText;
-      this.close();
     }
   }
 

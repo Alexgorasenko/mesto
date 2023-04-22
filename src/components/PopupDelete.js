@@ -30,10 +30,4 @@ export default class PopupDelete extends Popup {
     this._deleteButton.removeEventListener("click", this._submitCallback);
   }
 
-  setEventListeners() {
-    // добавляет слушатель клика иконке закрытия попапа.
-    this._popupCloseBotton.addEventListener("click", () => {
-      this.close();
-    });
-  }
 }
